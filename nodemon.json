@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": "ts,json",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "node -r ts-node/register --env-file=.env ./src/app.ts | pino-pretty"
+}
