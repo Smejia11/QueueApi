@@ -31,15 +31,9 @@ For development, you can use the following command, which automatically restarts
 ```bash
 npm run dev
 ```
-
-For postman testing, please use ICNNLogApi.postman_collection.json
-
 ## License
 
 This project is licensed under the Private License. For more details, see the [LICENSE](LICENSE) file.
 
 ---
 
-LogApi is an API project written in TypeScript that is specifically developed to save data trace. The API utilizes various dependencies and development tools listed above to ensure smooth operation.
-
-If you encounter any issues or have suggestions for improvement, please open an issue on the [Azure repository](https://devops.sistran.com/Colombia/ESTADO/_git/CO_SDE_PROY_ICNN_LogApi) or submit a pull request. Your contributions are highly appreciated in enhancing the capabilities of LogApi.
