@@ -35,18 +35,6 @@ export type Config = {
     port: String;
     db: number;
   };
-  VALORA: {
-    apiUrl: string;
-    apiKey: string;
-  };
-  EXTERNAL_QUOTING_METHODS: {
-    quoteUrlLibra: string;
-    authUrlLibra: string;
-    grantTypeLibra: string;
-    usernameLibra: string;
-    passwordLibra: string;
-    apiUrlLibra: string;
-  };
   LOG_API: {
     logsApiUrlBase: string;
   };

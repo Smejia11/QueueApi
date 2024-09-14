@@ -23,7 +23,7 @@ import {
   boomErrorHandler,
   zodErrorHandler,
   initTasks as cronJobs,
-  loggerMiddleware
+  loggerMiddleware,
 } from '../middlewares/';
 
 import { apiLimiter } from '../middlewares/';
@@ -38,6 +38,7 @@ const {
 
 import routerPrivate from '../routes/privates';
 import routerPublic from '../routes/publics';
+import { TYPES } from '../auth';
 
 const mongooseConnection = new MongooseConnection();
 const dbs = new Database(mongooseConnection);
@@ -82,15 +83,17 @@ class Server {
   }
 
   middleware() {
-    this.app.use(compression({
-      level: 6,
-      threshold: 100 * 1000,
-      filter: (req, res) => {
-        const noCompression = req.headers['x-no-compression'];
-        if (noCompression) return false;
-        return compression.filter(req, res);
-      },
-    }));
+    this.app.use(
+      compression({
+        level: 6,
+        threshold: 100 * 1000,
+        filter: (req, res) => {
+          const noCompression = req.headers['x-no-compression'];
+          if (noCompression) return false;
+          return compression.filter(req, res);
+        },
+      }),
+    );
     this.app.use(responseTime());
     this.app.use(helmet(helmetOptions));
     this.app.use(validatePermisionPolicy);
@@ -119,8 +122,8 @@ class Server {
     this.app.use(this.paths.public, routerPublic);
     this.app.use(
       this.paths.private,
-      passport.authenticate(['jwtICNN', 'jwtExternal'], { session: false }),
-      routerPrivate
+      passport.authenticate(Object.values(TYPES), { session: false }),
+      routerPrivate,
     );
   }
 

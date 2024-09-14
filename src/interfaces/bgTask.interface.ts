@@ -1,4 +1,4 @@
-export interface iRespBgTas {
+export interface IRespBgTas {
   id?: string;
   payload: any;
   error?: string;

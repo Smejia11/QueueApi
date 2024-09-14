@@ -37,18 +37,6 @@ const config: Config = {
     port: getEnvVariable('REDIS_PORT'),
     db: Number(getEnvVariable('REDIS_DB')),
   },
-  VALORA: {
-    apiUrl: getEnvVariable('VALORA_API_URL'),
-    apiKey: getEnvVariable('VALORA_API_KEY'),
-  },
-  EXTERNAL_QUOTING_METHODS: {
-    quoteUrlLibra: getEnvVariable('QUOTEURL_LIBRA'),
-    authUrlLibra: getEnvVariable('AUTH_URL_LIBRA'),
-    grantTypeLibra: getEnvVariable('GRANT_TYPE_LIBRA'),
-    usernameLibra: getEnvVariable('USERNAME_LIBRA'),
-    passwordLibra: getEnvVariable('PASSWORD_LIBRA'),
-    apiUrlLibra: getEnvVariable('API_URL_LIBRA'),
-  },
   LOG_API: {
     logsApiUrlBase: getEnvVariable('URL_API_LOGS'),
   },

@@ -1,7 +1,7 @@
 import { Queue, JobJson, JobsOptions } from 'bullmq';
 import { StatesBgtask } from '../enum';
 import { connection } from './config';
-import { iRespBgTas } from '../interfaces';
+import { IRespBgTas } from '../interfaces';
 class BgTasks {
   private queue: Queue;
   private queueName: string;
@@ -13,7 +13,7 @@ class BgTasks {
     this.taskName = '';
   }
 
-  private generateResponse(job: JobJson | undefined): iRespBgTas {
+  private generateResponse(job: JobJson | undefined): IRespBgTas {
     let state = StatesBgtask.STARTED;
     const { ip, token, device, ...restData }: any = job?.data
       ? JSON.parse(job.data)
