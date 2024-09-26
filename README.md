@@ -30,7 +30,7 @@ npm run dev
 ```
 ## License
 
-MTI
+MIT
 
 ---
 
