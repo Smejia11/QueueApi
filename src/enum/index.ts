@@ -34,25 +34,6 @@ export enum StatesBgtask {
 }
 
 export enum queueNames {
-  InconsistenciesReport = 'log_external_api_queue',
-  LeadValoraQueue = 'leadValoraQueue',
-  ScoringReportQueue = 'scoringReportQueue',
+  exampleQueue = 'exampleQueue',
 }
 
-export enum LeadStates {
-  COTIZADA = 'Cotizada',
-  EMITIDA = 'Emitida',
-  PENDIENTE = 'Pendiente',
-  EN_INSPECCION = 'En Inspeccion',
-  RE_INSPECCION = 'Re Inspeccion',
-  RECHAZADA = 'Rechazada',
-  VENCIDA = 'Vencida',
-  EN_INTEGRACION = 'En Integracion',
-  INTEGRADA = 'Integrada',
-  NO_INTEGRADA = 'No integrada',
-}
-
-export enum LogsAction {
-  INTEGRATION_VALORA = 'integracion valora',
-  LEAD_UPDATE = 'Actualizacion lead',
-}
