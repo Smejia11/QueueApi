@@ -9,7 +9,7 @@ const config: Config = {
     db_prefix: getEnvVariable('DB_PREFIX'),
     db_quotation: getEnvVariable('DB_QUOTATION'),
     db_log: getEnvVariable('DB_LOG'),
-    maxPoolSize: Number(getEnvVariable('MAX_POOL_SIZE') || 10),
+    maxPoolSize: Number(getEnvVariable('MAX_POOL_SIZE') ?? 10),
   },
   port: getEnvVariable('PORT'),
   maxRateLimit: +getEnvVariable('MAX_RATE_LIMIT'),

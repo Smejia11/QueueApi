@@ -1,6 +1,6 @@
 import { ConnectionOptions } from 'bullmq';
 import IORedis from 'ioredis';
-import { getEnvVariable } from '../utils';
+import { getEnvVariable } from '../../utils';
 
 export const connectionRedis: ConnectionOptions = {
   host: getEnvVariable('REDIS_SERVER'),
@@ -13,4 +13,4 @@ export const connection = new IORedis({
   maxRetriesPerRequest: null,
 });
 
-export const concurrency = +(getEnvVariable('COCURRENT_WORKERS') || 8);
+export const concurrency = +(getEnvVariable('CONCURRENT_WORKERS') || 8);

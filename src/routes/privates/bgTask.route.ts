@@ -1,10 +1,20 @@
 import express from 'express';
-import { RequestBgtTask } from '../../services/index';
+import { validateAndEscapeTask, validatorHandler } from '../../middlewares';
+import { paramsSchema } from '../../validations';
+import { RequestBgtTask } from '../../controllers/bgTask.controller';
 
 const router = express.Router();
 
-router.post('/', RequestBgtTask.create);
-router.get('/:id/:queue/:taskname', RequestBgtTask.get);
-router.get('/excel/:id/:queue/:taskname', RequestBgtTask.getExcel);
+router.post('/', validateAndEscapeTask, RequestBgtTask.create);
+router.get(
+  '/:id/:queue/:taskName',
+  validatorHandler(paramsSchema, 'params'),
+  RequestBgtTask.get,
+);
+router.get(
+  '/excel/:id/:queue/:taskName',
+  validatorHandler(paramsSchema, 'params'),
+  RequestBgtTask.getExcel,
+);
 
 export default router;

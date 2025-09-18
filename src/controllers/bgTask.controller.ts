@@ -2,18 +2,18 @@ import { Request, Response, NextFunction } from 'express';
 import boom from '@hapi/boom';
 import xlsx from 'node-xlsx';
 import { Stream } from 'stream';
-import BgTasks from '../queue/queue';
+import BgTasks from '../services/queue/queue';
 import { StatesBgtask } from '../enum';
 
 export class RequestBgtTask {
   static async getQueue(req: Request) {
     try {
-      const { id, queue, taskname } = req.params;
+      const { id, queue, taskName } = req.params;
 
       const bgTask = new BgTasks(queue);
-      return await bgTask.get(id, taskname);
+      return await bgTask.get(id, taskName);
     } catch (error) {
-      throw error;
+      throw new Error('Failed get Queue', { cause: error });
     }
   }
   static async create(req: Request, res: Response, next: NextFunction) {
@@ -38,7 +38,6 @@ export class RequestBgtTask {
   static async get(req: Request, res: Response, next: NextFunction) {
     try {
       const response = await RequestBgtTask.getQueue(req);
-
       res.send(response);
     } catch (error) {
       console.log('error', error);
@@ -65,7 +64,7 @@ export class RequestBgtTask {
       res.setHeader('Content-Disposition', 'attachment; filename=reporte.xlsx');
       res.setHeader(
         'Content-Type',
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       );
 
       readStream.pipe(res);

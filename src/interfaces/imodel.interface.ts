@@ -1,5 +1,5 @@
 import { FilterQuery, UpdateQuery } from 'mongoose';
-export interface IModelController<T> {
+export interface IModelRepository<T> {
   create(data: Partial<T>): Promise<T>;
   find(data: Partial<T>): Promise<T[]>;
   findById(id: string): Promise<T | null>;

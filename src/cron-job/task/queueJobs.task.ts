@@ -1,4 +1,4 @@
-import BgTasks from '../../queue/queue';
+import BgTasks from '../../services/queue/queue';
 import { queueNames } from '../../enum';
 
 export class QueueJobs {

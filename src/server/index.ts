@@ -10,8 +10,6 @@ import Database from '../db';
 import MongooseConnection from '../db/mongoDb.db';
 
 import config from '../config';
-
-import { CacheService } from '../services';
 import { Routes } from '../enum';
 
 //Middlewares
@@ -28,7 +26,7 @@ import {
 
 import { apiLimiter } from '../middlewares/';
 import '../auth';
-import '../queue/workers';
+import '../services/queue/workers';
 
 const {
   port,
@@ -39,6 +37,7 @@ const {
 import routerPrivate from '../routes/privates';
 import routerPublic from '../routes/publics';
 import { TYPES } from '../auth';
+import { CacheService } from '../services/cache.service';
 
 const mongooseConnection = new MongooseConnection();
 const dbs = new Database(mongooseConnection);
@@ -64,10 +63,6 @@ class Server {
     };
 
     this.paths = {
-      /**
-       * Para este servidor la unica ruta publicas sera "/" por
-       * seguridad
-       */
       public: `${Routes.serverOn}`,
       private: `${Routes.base}`,
     };
@@ -98,7 +93,7 @@ class Server {
     this.app.use(helmet(helmetOptions));
     this.app.use(validatePermisionPolicy);
     this.app.use(cors(this.corsOptions));
-    this.app.use(express.json({ limit: '50mb' }));
+    this.app.use(express.json({ limit: '100kb' }));
     this.app.use(apiLimiter);
     this.app.use(loggerMiddleware());
     this.app.use(logErrors);
@@ -113,12 +108,6 @@ class Server {
   }
 
   routes() {
-    /**
-     * Para este servidor no se usan rutas publicas por
-     * seguridad se deja comentada para que se tome como
-     * base en el futuro
-     */
-
     this.app.use(this.paths.public, routerPublic);
     this.app.use(
       this.paths.private,

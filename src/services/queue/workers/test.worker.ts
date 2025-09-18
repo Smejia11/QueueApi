@@ -1,5 +1,5 @@
 import { Job } from 'bullmq';
-import { sleep } from '../../utils';
+import { sleep } from '../../../utils';
 
 const workerTest = async (job: Job) => {
   try {

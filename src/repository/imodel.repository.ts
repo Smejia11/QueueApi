@@ -6,15 +6,21 @@ import mongoose, {
   FilterQuery,
   UpdateQuery,
 } from 'mongoose';
-import config from '../config';
-import { IModelController } from '../interfaces';
+import config from '@/config';
+import { IModelRepository } from '@/interfaces';
 
-const { db: { db_prefix } } = config;
+const {
+  db: { db_prefix },
+} = config;
 
-export class ModelController<T> implements IModelController<T> {
+export class ModelRepository<T> implements IModelRepository<T> {
   private model: Model<T>;
 
-  constructor(dataBase:string = 'quotation',modelName: string, schemaUse: Schema) {
+  constructor(
+    dataBase: string = 'quotation',
+    modelName: string,
+    schemaUse: Schema,
+  ) {
     const db = mongoose.connection.useDb(`${dataBase}${db_prefix}`);
     this.model = db.model<T>(modelName, schemaUse);
   }
@@ -25,14 +31,14 @@ export class ModelController<T> implements IModelController<T> {
 
   async find(
     data: Partial<T> | any,
-    projectionParam?: ProjectionFields<T>
+    projectionParam?: ProjectionFields<T>,
   ): Promise<T[]> {
     return this.model.find(data, projectionParam).sort({ _id: -1 }).exec();
   }
 
   async findOne(
     criteria: Partial<unknown>,
-    projection: ProjectionFields<T> = {}
+    projection: ProjectionFields<T> = {},
   ): Promise<T | null> {
     return this.model.findOne(criteria, projection).exec();
   }
@@ -47,7 +53,7 @@ export class ModelController<T> implements IModelController<T> {
 
   async update(
     criteria: FilterQuery<T>,
-    data: UpdateQuery<T>
+    data: UpdateQuery<T>,
   ): Promise<T | null> {
     return await this.model
       .findOneAndUpdate(criteria, data, { new: true })
