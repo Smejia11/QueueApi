@@ -1,5 +1,5 @@
 {
-  "name": "log_api",
+  "name": "queue_api",
   "version": "1.0.0",
   "private": true,
   "description": "This api was builded to save a trace of changes into other icnn services or external services",
@@ -12,6 +12,7 @@
     "start": "node --env-file=.env ./DeployPackage/app.js | pino-pretty",
     "lint": "eslint .",
     "dev": "nodemon",
+    "test": "node -r ts-node/register --env-file=.env --test ./src/test.ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
   },
   "author": "",

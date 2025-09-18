@@ -1,5 +1,5 @@
 import { Queue, JobJson, JobsOptions } from 'bullmq';
-import { StatesBgtask } from '../../enum';
+import { StatesBgTask } from '../../enum';
 import { connection } from './config';
 import { IRespBgTas } from '../../interfaces';
 class BgTasks {
@@ -14,7 +14,7 @@ class BgTasks {
   }
 
   private generateResponse(job: JobJson | undefined): IRespBgTas {
-    let state = StatesBgtask.STARTED;
+    let state = StatesBgTask.STARTED;
     const { _ip, _token, _device, ...restData }: any = job?.data
       ? JSON.parse(job.data)
       : {};
@@ -22,11 +22,11 @@ class BgTasks {
     const data = job?.returnvalue ? JSON.parse(job?.returnvalue) : null;
 
     if (!job || job?.failedReason) {
-      state = StatesBgtask.ERROR;
+      state = StatesBgTask.ERROR;
     } else if (job.finishedOn && job.returnvalue) {
-      state = StatesBgtask.COMPLETED;
+      state = StatesBgTask.COMPLETED;
     } else if (job.processedOn) {
-      state = StatesBgtask.PROCESSED;
+      state = StatesBgTask.PROCESSED;
     }
 
     return {
@@ -68,7 +68,7 @@ class BgTasks {
   }
 
   async remove(id: string) {
-    await this.queue.remove(id);
+    return await this.queue.remove(id);
   }
 
   async removeAll(limit: number = 50) {
@@ -77,6 +77,10 @@ class BgTasks {
 
   async obliterate() {
     await this.queue.obliterate();
+  }
+
+  async close() {
+    await this.queue.closing;
   }
 }
 

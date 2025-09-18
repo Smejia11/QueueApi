@@ -3,7 +3,7 @@ import boom from '@hapi/boom';
 import xlsx from 'node-xlsx';
 import { Stream } from 'stream';
 import BgTasks from '../services/queue/queue';
-import { StatesBgtask } from '../enum';
+import { StatesBgTask } from '../enum';
 
 export class RequestBgtTask {
   static async getQueue(req: Request) {
@@ -49,7 +49,7 @@ export class RequestBgtTask {
     try {
       const response = await RequestBgtTask.getQueue(req);
 
-      if (response.state !== StatesBgtask.COMPLETED) {
+      if (response.state !== StatesBgTask.COMPLETED) {
         return res.json(response);
       }
 

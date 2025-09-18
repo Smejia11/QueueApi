@@ -22,7 +22,7 @@ export const mensajesErroresHTTP: Record<number, string> = {
 };
 
 
-export enum StatesBgtask {
+export enum StatesBgTask {
   ACTIVE = 'ACTIVE',
   STARTED = 'STARTED',
   WAITING = 'WAITING',
