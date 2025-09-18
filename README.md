@@ -1,36 +1,37 @@
-# QueueApi
+# Queue API
 
-This is the official repository for Queue.
-
-## Installation
-
-Make sure you have Node.js (version 18) installed. Then, clone the repository:
-
-
-Install the dependencies:
-
-```bash
-npm install
-```
-
-Note: use node v20
-
-## Usage
-
-You can start the server by running the following command:
-
-```bash
-npm start
-```
-
-For development, you can use the following command, which automatically restarts the server when changes are made to the files:
-
-```bash
-npm run dev
-```
-## License
-
-MIT
+A lightweight Node.js/Express API demonstrating **background job processing** with [BullMQ](https://docs.bullmq.io/) and Redis.  
+Ideal for tasks such as email notifications, image processing, or any workload you don’t want to block HTTP requests.
 
 ---
 
+## ✨ Features
+- Queue-based job scheduling with **BullMQ**.
+- Redis-backed storage for reliability and horizontal scalability.
+- REST endpoints to create, list, and monitor jobs.
+- Configurable concurrency, retries, and delayed jobs.
+- Optional dashboard integration using [bull-board](https://github.com/felixmosh/bull-board).
+
+---
+
+## 🛠 Tech Stack
+- **Node.js** 22+
+- **Express.js**
+- **BullMQ**
+- **Redis**
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 22 or higher
+- Redis server (local or remote)
+
+### Installation
+```bash
+git clone https://github.com/Smejia11/QueueApi.git
+cd QueueApi
+npm install
+cp .env.example .env    # set your Redis connection string if needed
+npm run dev
