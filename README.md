@@ -129,4 +129,7 @@ import { Worker } from 'bullmq';
 import { connection, workerTest } from './config';
 
 new Worker('testQueue', workerTest, { connection, concurrency: 5 });
+```
+### Test
+<img width="587" height="187" alt="image" src="https://github.com/user-attachments/assets/918185c7-b9e3-41ee-815e-02e7615216a1" />
 
