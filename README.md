@@ -116,7 +116,7 @@ curl -X GET \
 **Request Example:**
 ```json
 {
- -> "queue": "testQueue",
+  "queue": "testQueue",
   "taskName": "sendWelcomeEmail",
   "data": { 
     "to": "user@example.com", 
